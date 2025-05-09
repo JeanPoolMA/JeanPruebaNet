@@ -1,4 +1,5 @@
-﻿using JeanPruebaNet.Domain.Entities;
+﻿using JeanPruebaNet.Application.DataTransferObjects.ProductStock;
+using JeanPruebaNet.Domain.Entities;
 
 
 namespace JeanPruebaNet.Application.Common.Abstractions
@@ -9,5 +10,6 @@ namespace JeanPruebaNet.Application.Common.Abstractions
         Task<IEnumerable<ProductStock>> GetAllAsync();
         Task UpdateAsync(ProductStock product);
         Task CreateStock(ProductStock product);
+        Task<List<(string ProductId, int Quantity)>> GetProductWithQuantityAsync();
     }
 }

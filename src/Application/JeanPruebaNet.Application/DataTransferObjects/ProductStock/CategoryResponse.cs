@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace JeanPruebaNet.Application.DataTransferObjects.ProductStock
 {
-    public class ProductStockCreate
+    public class CategoryResponse
     {
-        public string ProductId { get; set; } = string.Empty;
-        public int Quantity { get; set; }
+        public string CategoryName { get; set; } = string.Empty;
+        public int TotalQuantity { get; set; }
     }
 }

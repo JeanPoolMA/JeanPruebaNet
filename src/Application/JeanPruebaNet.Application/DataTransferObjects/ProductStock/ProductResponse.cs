@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace JeanPruebaNet.Application.DataTransferObjects.ProductStock
 {
-    public class ProductStockResponse
+    public class ProductResponse
     {
-        public int Id { get; set; }
-        public string ProductId { get; set; } = string.Empty;
-        public int Quantity { get; set; }
+        public string Id { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
+        public string CategoryName { get; set; } = string.Empty;
+        public int? Quantity { get; set; }
+
     }
 }

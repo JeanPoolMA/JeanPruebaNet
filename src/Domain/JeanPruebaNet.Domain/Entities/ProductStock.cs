@@ -10,6 +10,6 @@ namespace JeanPruebaNet.Domain.Entities
     {
         public int Id { get; set; }
         public string ProductId { get; set; } = string.Empty;
-        public int quantity { get; set; }
+        public int Quantity { get; set; }
     }
 }

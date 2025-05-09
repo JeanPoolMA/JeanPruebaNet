@@ -1,18 +1,22 @@
 using JeanPruebaNet.Domain;
 using JeanPruebaNet.Application;
+using JeanPruebaNet.Application.Services.ProductStockService;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder);
 
 
-
-
-
-// Aquí es donde agregas servicios (ANTES de builder.Build())
 builder.Services.AddControllers();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddHttpClient<IProductStockService, ProductStockService>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:8081/api/product");
+});
+
+
 
 builder.Services.AddCors(options =>
 {
@@ -26,7 +30,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();

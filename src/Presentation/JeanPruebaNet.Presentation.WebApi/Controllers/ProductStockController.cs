@@ -16,20 +16,56 @@ namespace JeanPruebaNet.Presentation.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetAllProductStockAsync()
         {
-            return Ok(await productStockService.GetAllProductsStockAsync());
+            var stocks = await productStockService.GetAllProductsStockWithProductAsync();
+            return Ok(new { stocks });
         }
-        [HttpGet("productStockId")]
-        public async Task<IActionResult> GetProductById(int productStockId)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProductStockById(int id)
         {
-            return Ok(await productStockService.GetProductStockByIdAsync(productStockId));
+            return Ok(await productStockService.GetProductStockByIdAsync(id));
         }
         [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] ProductStockCreate productStockCreate)
+        public async Task<IActionResult> CreateProductStockAsync([FromBody] ProductStockCreate productStockCreate)
         {
             return Ok(await productStockService.CreateProductStock(productStockCreate));
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProductStockAsync(int id, [FromBody] ProductStockCreate productStockCreate)
+        {
+            return Ok(await productStockService.UpdateProductStockAsync(id, productStockCreate));
+
+        }
+
+        [HttpGet("products")]
+        public async Task<IActionResult> GetAllProductsAsync()
+        {
+            var products = await productStockService.GetAllProductsAsync();
+            return Ok(new { products });
+        }
+        [HttpGet("products/{id}")]
+        public async Task<IActionResult> GetProductByIdAsync(string id)
+        {
+            return Ok(await productStockService.GetProductByIdAsync(id));
+        }
+        [HttpPost("products")]
+        public async Task<IActionResult> CreateProductAsync([FromBody] ProductCreate productCreate)
+        {
+            return Ok(await productStockService.CreateProductAsync(productCreate));
+        }
+        [HttpPut("products/{id}")]
+        public async Task<IActionResult> UpdateProductAsync(string id, [FromBody] ProductCreate request)
+        {
+            return Ok(await productStockService.UpdateProductAsync(id, request));
+
+        }
+        [HttpGet("categories")]
+        public async Task<IActionResult> GetAllCategoriesAsync()
+        {
+            var categories = await productStockService.GetSummaryByCategoryAsync();
+            return Ok(new { categories });
+        }
     }
 }

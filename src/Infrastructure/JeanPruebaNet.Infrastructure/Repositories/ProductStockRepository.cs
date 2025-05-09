@@ -1,5 +1,6 @@
 ﻿
 using JeanPruebaNet.Application.Common.Abstractions;
+using JeanPruebaNet.Application.DataTransferObjects.ProductStock;
 using JeanPruebaNet.Domain.Entities;
 using JeanPruebaNet.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
@@ -38,5 +39,14 @@ namespace JeanPruebaNet.Infrastructure.Repositories
             await context.ProductStocks.AddAsync(productStock);
             await context.SaveChangesAsync();
         }
+
+        public async Task<List<(string ProductId, int Quantity)>> GetProductWithQuantityAsync()
+        {
+            return await context.ProductStocks
+                .GroupBy(ps => ps.ProductId)
+                .Select(g => new ValueTuple<string, int>(g.Key, g.Sum(ps => ps.Quantity)))
+                .ToListAsync();
+        }
+
     }
 }
