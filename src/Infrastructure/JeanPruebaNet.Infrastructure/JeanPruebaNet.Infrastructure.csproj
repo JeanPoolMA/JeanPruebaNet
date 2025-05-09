@@ -3,6 +3,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Application\JeanPruebaNet.Application\JeanPruebaNet.Application.csproj" />
     <ProjectReference Include="..\..\Domain\JeanPruebaNet.Domain\JeanPruebaNet.Domain.csproj" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
+	  <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.10" />
+	  <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
+	  <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="8.1.1" />
   </ItemGroup>
 
   <PropertyGroup>
